@@ -1,9 +1,9 @@
 1. 上传优惠券 token
     GET: 127.0.0.1:9528/upload
-    merchantsId - 18
-    PassTemplateId: 4bbd78a2c44f1d96519dd8d55abea1d5
+    merchantsId - 18（你自己的商户Id）
+    PassTemplateId: 4bbd78a2c44f1d96519dd8d55abea1d5（在hbase中查看，并在后面测试用例中改为你自己的passTemplateId）
 
-2. 创建用户 -- 用户 155471
+2. 创建用户 -- 用户 155471（记下你自己的用户id，并将后面测试用例中的155471改为你自己的id）
     POST: 127.0.0.1:9528/passbook/createuser
     {
         "baseInfo": {

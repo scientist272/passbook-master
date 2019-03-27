@@ -6,7 +6,7 @@
     3. D:/tmp/token/ 下面的优惠券 token 数据
     4. redis 中的数据
 
-1. 创建商户 -- 商户 id返回为 18
+1. 创建商户 -- 商户 id返回为 18（记下你自己再数据库中的商户id,并将is_audit改为1，在后面的测试用例中将18改为你自己的id）
     POST: 127.0.0.1:9527/merchants/create
     header: token/ziggy-passbook-merchants
     {
