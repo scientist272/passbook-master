@@ -1,0 +1,261 @@
+1. 上传优惠券 token
+    GET: 127.0.0.1:9528/upload
+    merchantsId - 18
+    PassTemplateId: 4bbd78a2c44f1d96519dd8d55abea1d5
+
+2. 创建用户 -- 用户 155471
+    POST: 127.0.0.1:9528/passbook/createuser
+    {
+        "baseInfo": {
+            "name": "ziggy",
+            "age": 10,
+            "sex": "m"
+        },
+        "otherInfo": {
+            "phone": "1234567890",
+            "address": "北京市海淀区"
+        }
+    }
+
+    result:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": {
+            "id": 155471,
+            "baseInfo": {
+                "name": "ziggy",
+                "age": 10,
+                "sex": "m"
+            },
+            "otherInfo": {
+                "phone": "1234567890",
+                "address": "北京市海淀区"
+            }
+        }
+    }
+
+3. 库存信息
+    GET: 127.0.0.1:9528/passbook/inventoryinfo?userId=155471
+
+    result:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": {
+            "userId": 155471,
+            "passTemplateInfos": [
+                {
+                    "passTemplate": {
+                        "id": 18,
+                        "title": "优惠券-2",
+                        "summary": "优惠券简介",
+                        "desc": "优惠券",
+                        "limit": 1000,
+                        "hasToken": true,
+                        "background": 1,
+                        "start": 1527782400000,
+                        "end": 1561824000000
+                    },
+                    "merchants": {
+                        "id": 18,
+                        "name": "ziggy",
+                        "logoUrl": "www.imooc.com",
+                        "businessLicenseUrl": "www.imooc.com",
+                        "phone": "1234567890",
+                        "address": "北京市朝阳区",
+                        "isAudit": true
+                    }
+                },
+                {
+                    "passTemplate": {
+                        "id": 18,
+                        "title": "优惠券-1",
+                        "summary": "优惠券简介",
+                        "desc": "优惠券",
+                        "limit": 1000,
+                        "hasToken": false,
+                        "background": 1,
+                        "start": 1527782400000,
+                        "end": 1561824000000
+                    },
+                    "merchants": {
+                        "id": 18,
+                        "name": "ziggy",
+                        "logoUrl": "www.imooc.com",
+                        "businessLicenseUrl": "www.imooc.com",
+                        "phone": "1234567890",
+                        "address": "北京市朝阳区",
+                        "isAudit": true
+                    }
+                }
+            ]
+        }
+    }
+
+4. 获取优惠券 -- 获取的是带有 token 的优惠券
+    POST: 127.0.0.1:9528/passbook/gainpasstemplate
+    {
+        "userId": 155471,
+        "passTemplate": {
+            "id": 18,
+            "title": "优惠券-2",
+            "hasToken": true
+        }
+    }
+
+    result:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": null
+    }
+
+5. userpassinfo
+    GET: 127.0.0.1:9528/passbook/userpassinfo?userId=155471
+
+    result:
+        {
+            "errorCode": 0,
+            "errorMsg": "",
+            "data": [
+                {
+                    "pass": {
+                        "userId": 155471,
+                        "rowKey": "17455192233704831993930084bbd78a2c44f1d96519dd8d55abea1d5",
+                        "templateId": "4bbd78a2c44f1d96519dd8d55abea1d5",
+                        "token": "token-1",
+                        "assginedDate": 1553616000000,
+                        "conDate": null
+                    },
+                    "passTemplate": {
+                        "id": 18,
+                        "title": "优惠券-2",
+                        "summary": "优惠券简介",
+                        "desc": "优惠券",
+                        "limit": 1000,
+                        "hasToken": true,
+                        "background": 1,
+                        "start": 1527782400000,
+                        "end": 1561824000000
+                    },
+                    "merchants": {
+                        "id": 18,
+                        "name": "ziggy",
+                        "logoUrl": "www.imooc.com",
+                        "businessLicenseUrl": "www.imooc.com",
+                        "phone": "1234567890",
+                        "address": "北京市朝阳区",
+                        "isAudit": true
+                    }
+                }
+            ]
+        }
+
+6. userusedpassinfo
+    GET: 127.0.0.1:9528/passbook/userusedpassinfo?userId=155471
+    result:
+    使用优惠券前:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": []
+    }
+
+    使用优惠券后:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": [
+            {
+                "pass": {
+                    "userId": 155471,
+                    "rowKey": "17455192233704831993930084bbd78a2c44f1d96519dd8d55abea1d5",
+                    "templateId": "4bbd78a2c44f1d96519dd8d55abea1d5",
+                    "token": "token-1",
+                    "assginedDate": 1553616000000,
+                    "conDate": 1553616000000
+                },
+                "passTemplate": {
+                    "id": 18,
+                    "title": "优惠券-2",
+                    "summary": "优惠券简介",
+                    "desc": "优惠券",
+                    "limit": 1000,
+                    "hasToken": true,
+                    "background": 1,
+                    "start": 1527782400000,
+                    "end": 1561824000000
+                },
+                "merchants": {
+                    "id": 18,
+                    "name": "ziggy",
+                    "logoUrl": "www.imooc.com",
+                    "businessLicenseUrl": "www.imooc.com",
+                    "phone": "1234567890",
+                    "address": "北京市朝阳区",
+                    "isAudit": true
+                }
+            }
+        ]
+    }
+
+
+7. userusepass
+    POST: 127.0.0.1:9528/passbook/userusepass
+    {
+        "userId": 155471,
+        "templateId": "4bbd78a2c44f1d96519dd8d55abea1d5"
+    }
+
+    result:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": null
+    }
+
+
+8. 创建评论信息
+    POST: 127.0.0.1:9528/passbook/createfeedback
+    {
+        "userId": 155471,
+        "type": "app",
+        "templateId": -1,
+        "comment": "学习分布式卡包应用"
+    }
+    {
+        "userId": 155471,
+        "type": "pass",
+        "templateId": "e3ec06eaacb2f1dca901556991df7bb0",
+        "comment": "学习分布式卡包应用"
+    }
+
+    result:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": null
+    }
+
+9. 查看评论信息
+    GET: 127.0.0.1:9528/passbook/getfeedback?userId=155471
+    result:
+    {
+        "errorCode": 0,
+        "errorMsg": "",
+        "data": [
+            {
+                "userId": 155471,
+                "type": "pass",
+                "templateId": "e3ec06eaacb2f1dca901556991df7bb0",
+                "comment": "学习分布式卡包应用"
+            },
+            {
+                "userId": 155471,
+                "type": "app",
+                "templateId": "-1",
+                "comment": "学习分布式卡包应用"
+            }
+        ]
+    }
