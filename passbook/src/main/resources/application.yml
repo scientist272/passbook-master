@@ -2,23 +2,23 @@ spring:
  application:
    name: Imooc-Passbook
  datasource:
-   url: jdbc:mysql://localhost:3306/passbook?autoReconnect=true&serverTimezone=GMT
-   username: root
-   password: root
+   url: ${yourhost}
+   username: ${yourname}
+   password: ${yourpassword}
  kafka:
-  bootstrap-servers: 119.23.206.146:9092
+  bootstrap-servers: ${yourhost}
   consumer:
     group-id: passbook
   listener:
     concurrency: 4
  data:
   hbase:
-    quorum: 127.0.0.1:2181
-    rootDir: file:///D:/HBase/hbase-1.2.0/data
-    nodeParent: /hbase
+    quorum: ${yourhost}
+    rootDir:${yourHbaseRootDir}
+    nodeParent: ${yourZookeeperNodeParent}
  redis:
-    host: 119.23.206.146
-    port: 6379
+    host: ${yourhost}
+    port: ${yourport}
 
 server:
   port: 9528
@@ -26,5 +26,3 @@ server:
 logging:
   file: imooc-passbook.log
   level: debug
-
-
